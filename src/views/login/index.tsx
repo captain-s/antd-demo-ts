@@ -39,7 +39,7 @@ function UserForm(Props:any):any{
                     if( data.error_code === 0){
                         bindToken(data.data.token)
                         console.log(store.getState())
-                        history.push('/home');
+                        history.push('/media/list');
                     } else {
                         // 清空验证码
                         getCode()

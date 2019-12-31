@@ -4,12 +4,25 @@ import store from '../store'
 // 当前环境接口请求url
 // const ajaxUrl = process.env.NODE_ENV === 'production' ? window.CONFIG.API_URL : ''
 
-const ajaxUrl = ''
+const ajaxUrl = '';
 /**
  * ajaxUrl : api的base_url
  * timeout : 请求超时时间 5s
  * withCredentials: 跨域请求时是否带cookie
  **/
+
+// 添加Header 参数
+// interface setHead {
+//     [key: string]: any;
+// }
+const addHeaderLog = (params:any) => {
+    let head = {
+        'X-TOKEN' : store.getState() ? store.getState().setToken : ''
+    }
+    // head['TOKEN'] = store.getState() ? store.getState() : ''
+    console.log(store.getState())  //为什么存上之后 getState() 返回的是 key-value 状态
+    Object.assign(params.headers,head)
+};
 
 class HttpRequest {
     baseURL:string;
@@ -28,6 +41,7 @@ class HttpRequest {
         // 添加请求拦截器
         instance.interceptors.request.use(function (config:any) {
             // 在发送请求之前做些什么
+            addHeaderLog(config)
             return config;
         }, function (error:any) {
             // 对请求错误做些什么

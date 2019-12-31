@@ -15,58 +15,66 @@ const Plat = React.lazy(() => import('../views/flow/plat'));
 
 const routerConfig = [
     {
-        path: '/user',
+        path: '/login',
         component: UserLayout,
         children:[
             {
-                path: '/',
-                redirect: '/user/login',
-            },
-            {
-                path: '/login',
+                path: '',
                 component: UserLogin,
             }
         ]
     },
     {
-        path: '/media',
+        path: '/',
         component:BasicLayout,
         children:[
             {
                 path: '/',
-                redirect: '/list',
+                redirect: '/media/list',
             },
             {
-                path: '/list',
+                path: '/media/list',
                 component: Media,
             },
             {
-                path: '/advertisement',
+                path: '/media/advertisement',
                 component: Advertisement,
             },
-        ]
-    },
-    {
-        path: '/flow',
-        component:BasicLayout,
-        children:[
             {
-                path: '/',
-                redirect: '/sdk',
-            },
-            {
-                path: '/sdk',
+                path: '/flow/sdk',
                 component: Sdk,
             },
             {
-                path: '/api',
+                path: '/flow/api',
                 component: Api,
             },
             {
-                path: '/plat',
+                path: '/flow/plat',
                 component: Plat,
             },
         ]
-    }
+    },
+    // {
+    //     path: '/flow',
+    //     component:BasicLayout,
+    //     children:[
+    //         {
+    //             path: '/',
+    //             redirect: '/sdk',
+    //         },
+    //         {
+    //             path: '/sdk',
+    //             component: Sdk,
+    //         },
+    //         {
+    //             path: '/api',
+    //             component: Api,
+    //         },
+    //         {
+    //             path: '/plat',
+    //             component: Plat,
+    //         },
+    //     ]
+    // }
 ]
 export default routerConfig;
