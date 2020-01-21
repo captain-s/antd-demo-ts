@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Slider, Button } from 'antd';
+import { Slider, Button, Table, Tag } from 'antd';
+import { ColumnProps } from 'antd/es/table';
 import store from '../../store';
 import { ajax } from '../../libs/axios';
 
@@ -9,9 +10,6 @@ interface Color {
     b: number
 };
 function Rectangle() {
-    console.log(1)
-    console.log(store.getState().setToken)
-    console.log(1)
     const [height, setHeight] = useState<number>(10);
     const [width, setWidth] = useState(10);
     const [color, setColor] = useState<Color>({ r: 0, g: 0, b: 0 });
@@ -58,6 +56,123 @@ function Rectangle() {
     )
 };
 
+interface User {
+    id: string,
+    dataIndex:number,
+    name: string,
+    aff_name: string,
+    os_type: string,
+    incentive_app:string,
+    ctime:string,
+    ad_cnt:string,
+    auditor:string,
+    audit_time:string,
+    approvalText:string,
+    refuse_reason:string,
+    tags: [],
+}
+function List_table(props:any) {
+    const columns: ColumnProps<User>[] = [
+            {
+            title: '媒体名称',
+            dataIndex: 'name',
+            className:'left',
+            align:'center',
+            render: (text:any) => <a>{text}</a>,
+            },
+            {
+            title: '媒体ID',
+            dataIndex: 'id',
+
+            },
+            {
+            title: '渠道名称',
+            dataIndex: 'aff_name',
+            },
+            {
+            title: '系统平台',
+            dataIndex: 'os_type',
+            },
+            {
+            title: '是否为激励型媒体',
+            dataIndex: 'incentive_app',
+
+            },
+            {
+            title: '创建时间',
+            dataIndex: 'ctime',
+
+            },
+            {
+            title: '广告位数量',
+            dataIndex: 'ad_cnt',
+
+            },
+            {
+            title: '操作人',
+            dataIndex: 'auditor',
+
+            },
+            {
+            title: '审核时间',
+            dataIndex: 'audit_time',
+
+            },
+            {
+            title: '状态',
+            dataIndex: 'approvalText',
+
+            render:(approvalText:any,params:any)=>{
+                    const approval = Number(params.approval)
+                    switch(approval){
+                        case 0 :
+                        return <Tag color="#f50">{approvalText}</Tag>;
+                        case 1 :
+                            return <Tag color="#2db7f5">{approvalText}</Tag>;
+                        case 2 :
+                            return <Tag color="#87d068">{approvalText}</Tag>;
+                        default:
+                            return <Tag color="#108ee9">{approvalText}</Tag>
+                    }
+                }
+            },
+            {
+            title: '备注',
+            dataIndex: 'refuse_reason',
+
+            },
+            {
+            title: '操作',
+            dataIndex: 'approval',
+            render:(approvalText:any,params:any)=>{
+                console.log(params)
+                const approval = Number(params.approval)
+
+                if(approval === 0){
+                    return (
+                        <a onClick={() => props.fetchData()}>拒绝</a>
+                    )
+                }else{
+                    return (<a onClick={() => props.fetchData()}>审核</a>)
+                }
+            }
+            },
+        ];
+        let data = props.dataSource
+    return (
+        <div>
+            <Table 
+            rowKey={data => data.id} 
+            columns={columns} 
+            dataSource={data} 
+            bordered
+            pagination = {false}
+            />
+        </div>
+    )
+};
+
+
 interface Params {
     os_type?:string | number,   //系统平台
     incentive_app?:string | number, //是否为激励型媒体
@@ -66,19 +181,18 @@ interface Params {
     app_id?:string | number,   //媒体名称
     pn?:number,         //当前页
     rn?:number          //当前页展示数
-}
+};
 
 export default function Counter() {
     const [counter,setCounter] = useState<number>(0);
-    const [param] = useState<Params>({});
+    const [param] = useState<Params>({pn:1,rn:20});
+    const [paramTable,setParamTalbe] = useState([]);
     function fetchListData() {
         ajax.post('/app/list',param).then((res:any)=>{
             let data = res.data;
             if( data.error_code === 0){
                 console.log(data)
-                
-            } else {
-                console.log(data)
+                setParamTalbe(data.data.list)
             }
         })
     };
@@ -97,6 +211,7 @@ export default function Counter() {
             <div key="a">{counter}</div>
             <Button key="b" type="primary" onClick={()=>searchByName(2)}>点击加一</Button>
             <Rectangle/>
+            <List_table dataSource = {paramTable} fetchData={fetchListData}/>
         </div>
     )
 };

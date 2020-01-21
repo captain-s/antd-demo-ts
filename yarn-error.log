@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn state
+  /usr/local/bin/node /usr/local/bin/yarn start
 
 PATH: 
   /Applications/MAMP/bin/php/php7.1.1/bin:/Users/shenys/.rvm/gems/ruby-2.3.0/bin:/Users/shenys/.rvm/gems/ruby-2.3.0@global/bin:/Users/shenys/.rvm/rubies/ruby-2.3.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/MAMP/bin/php/php7.1.1/bin:/Users/shenys/.rvm/gems/ruby-2.3.0/bin:/Users/shenys/.rvm/gems/ruby-2.3.0@global/bin:/Users/shenys/.rvm/rubies/ruby-2.3.0/bin:/Users/shenys/.rvm/bin:/Users/shenys/.rvm/bin:/Users/shenys/.rvm/bin
@@ -19,6 +19,7 @@ npm manifest:
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+      "@types/animejs": "^3.1.0",
       "@types/jest": "24.0.21",
       "@types/node": "12.12.5",
       "@types/qs": "^6.5.3",
@@ -72,8 +73,8 @@ npm manifest:
         "last 1 safari version"
       ]
     },
-    "proxy": "http://dev.consoleapi.starfish.gm825.net",
     "devDependencies": {
+      "http-proxy-middleware": "^0.20.0",
       "redux-devtools": "^3.5.0"
     }
   }
@@ -1196,6 +1197,10 @@ Lockfile:
       "@svgr/plugin-svgo" "^4.3.1"
       loader-utils "^1.2.3"
   
+  "@types/animejs@^3.1.0":
+    version "3.1.0"
+    resolved "https://registry.npm.taobao.org/@types/animejs/download/@types/animejs-3.1.0.tgz#9fa31e5fcf3a0304aa097a2a357e03630d820ab1"
+  
   "@types/babel__core@^7.1.0":
     version "7.1.3"
     resolved "https://registry.npm.taobao.org/@types/babel__core/download/@types/babel__core-7.1.3.tgz#e441ea7df63cd080dfcd02ab199e6d16a735fc30"
@@ -2135,6 +2140,12 @@ Lockfile:
       split-string "^3.0.2"
       to-regex "^3.0.1"
   
+  braces@^3.0.1:
+    version "3.0.2"
+    resolved "https://registry.npm.taobao.org/braces/download/braces-3.0.2.tgz#3454e1a462ee8d599e236df336cd9ea4f8afe107"
+    dependencies:
+      fill-range "^7.0.1"
+  
   brorand@^1.0.1:
     version "1.1.0"
     resolved "https://registry.npm.taobao.org/brorand/download/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
@@ -2624,7 +2635,7 @@ Lockfile:
   
   confusing-browser-globals@^1.0.7, confusing-browser-globals@^1.0.9:
     version "1.0.9"
-    resolved "https://registry.npm.taobao.org/confusing-browser-globals/download/confusing-browser-globals-1.0.9.tgz?cache=0&sync_timestamp=1571960907380&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fconfusing-browser-globals%2Fdownload%2Fconfusing-browser-globals-1.0.9.tgz#72bc13b483c0276801681871d4898516f8f54fdd"
+    resolved "https://registry.npm.taobao.org/confusing-browser-globals/download/confusing-browser-globals-1.0.9.tgz?cache=0&sync_timestamp=1575503767761&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fconfusing-browser-globals%2Fdownload%2Fconfusing-browser-globals-1.0.9.tgz#72bc13b483c0276801681871d4898516f8f54fdd"
   
   connect-history-api-fallback@^1.3.0:
     version "1.6.0"
@@ -3472,7 +3483,7 @@ Lockfile:
   
   eslint-config-react-app@^4.0.1:
     version "4.0.1"
-    resolved "https://registry.npm.taobao.org/eslint-config-react-app/download/eslint-config-react-app-4.0.1.tgz?cache=0&sync_timestamp=1571988299741&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-config-react-app%2Fdownload%2Feslint-config-react-app-4.0.1.tgz#23fd0fd7ea89442ef1e733f66a7207674b23c8db"
+    resolved "https://registry.npm.taobao.org/eslint-config-react-app/download/eslint-config-react-app-4.0.1.tgz?cache=0&sync_timestamp=1575504473011&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-config-react-app%2Fdownload%2Feslint-config-react-app-4.0.1.tgz#23fd0fd7ea89442ef1e733f66a7207674b23c8db"
     dependencies:
       confusing-browser-globals "^1.0.7"
   
@@ -3509,7 +3520,14 @@ Lockfile:
       object-hash "^1.3.1"
       schema-utils "^2.2.0"
   
-  eslint-module-utils@^2.3.0, eslint-module-utils@^2.4.0:
+  eslint-module-utils@^2.3.0:
+    version "2.5.2"
+    resolved "https://registry.npm.taobao.org/eslint-module-utils/download/eslint-module-utils-2.5.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-module-utils%2Fdownload%2Feslint-module-utils-2.5.2.tgz#7878f7504824e1b857dd2505b59a8e5eda26a708"
+    dependencies:
+      debug "^2.6.9"
+      pkg-dir "^2.0.0"
+  
+  eslint-module-utils@^2.4.0:
     version "2.4.1"
     resolved "https://registry.npm.taobao.org/eslint-module-utils/download/eslint-module-utils-2.4.1.tgz#7b4675875bf96b0dbf1b21977456e5bb1f5e018c"
     dependencies:
@@ -3518,7 +3536,7 @@ Lockfile:
   
   eslint-plugin-flowtype@2.50.1:
     version "2.50.1"
-    resolved "https://registry.npm.taobao.org/eslint-plugin-flowtype/download/eslint-plugin-flowtype-2.50.1.tgz?cache=0&sync_timestamp=1567509306869&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-plugin-flowtype%2Fdownload%2Feslint-plugin-flowtype-2.50.1.tgz#36d4c961ac8b9e9e1dc091d3fba0537dad34ae8a"
+    resolved "https://registry.npm.taobao.org/eslint-plugin-flowtype/download/eslint-plugin-flowtype-2.50.1.tgz#36d4c961ac8b9e9e1dc091d3fba0537dad34ae8a"
     dependencies:
       lodash "^4.17.10"
   
@@ -3972,6 +3990,12 @@ Lockfile:
       repeat-string "^1.6.1"
       to-regex-range "^2.1.0"
   
+  fill-range@^7.0.1:
+    version "7.0.1"
+    resolved "https://registry.npm.taobao.org/fill-range/download/fill-range-7.0.1.tgz#1919a6a7c75fe38b2c7c77e5198535da9acdda40"
+    dependencies:
+      to-regex-range "^5.0.1"
+  
   finalhandler@~1.1.2:
     version "1.1.2"
     resolved "https://registry.npm.taobao.org/finalhandler/download/finalhandler-1.1.2.tgz#b7e7d000ffd11938d0fdb053506f6ebabe9f587d"
@@ -4159,7 +4183,7 @@ Lockfile:
   
   fsevents@2.0.7:
     version "2.0.7"
-    resolved "https://registry.npm.taobao.org/fsevents/download/fsevents-2.0.7.tgz#382c9b443c6cbac4c57187cdda23aa3bf1ccfc2a"
+    resolved "https://registry.npm.taobao.org/fsevents/download/fsevents-2.0.7.tgz?cache=0&sync_timestamp=1576323112997&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffsevents%2Fdownload%2Ffsevents-2.0.7.tgz#382c9b443c6cbac4c57187cdda23aa3bf1ccfc2a"
   
   fsevents@^1.2.7:
     version "1.2.9"
@@ -4554,6 +4578,15 @@ Lockfile:
       lodash "^4.17.11"
       micromatch "^3.1.10"
   
+  http-proxy-middleware@^0.20.0:
+    version "0.20.0"
+    resolved "https://registry.npm.taobao.org/http-proxy-middleware/download/http-proxy-middleware-0.20.0.tgz#5b128f7207985c4ea91b53fab8ad897a48c690d6"
+    dependencies:
+      http-proxy "^1.17.0"
+      is-glob "^4.0.1"
+      lodash "^4.17.14"
+      micromatch "^4.0.2"
+  
   http-proxy@^1.17.0:
     version "1.18.0"
     resolved "https://registry.npm.taobao.org/http-proxy/download/http-proxy-1.18.0.tgz#dbe55f63e75a347db7f3d99974f2692a314a6a3a"
@@ -4919,6 +4952,10 @@ Lockfile:
     resolved "https://registry.npm.taobao.org/is-number/download/is-number-3.0.0.tgz#24fd6201a4782cf50561c810276afc7d12d71195"
     dependencies:
       kind-of "^3.0.2"
+  
+  is-number@^7.0.0:
+    version "7.0.0"
+    resolved "https://registry.npm.taobao.org/is-number/download/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   
   is-obj@^1.0.0, is-obj@^1.0.1:
     version "1.0.1"
@@ -5935,6 +5972,13 @@ Lockfile:
       snapdragon "^0.8.1"
       to-regex "^3.0.2"
   
+  micromatch@^4.0.2:
+    version "4.0.2"
+    resolved "https://registry.npm.taobao.org/micromatch/download/micromatch-4.0.2.tgz#4fcb0999bf9fbc2fcbdd212f6d629b9a56c39259"
+    dependencies:
+      braces "^3.0.1"
+      picomatch "^2.0.5"
+  
   miller-rabin@^4.0.0:
     version "4.0.1"
     resolved "https://registry.npm.taobao.org/miller-rabin/download/miller-rabin-4.0.1.tgz#f080351c865b0dc562a8462966daa53543c78a4d"
@@ -6731,6 +6775,10 @@ Lockfile:
   performance-now@^2.1.0:
     version "2.1.0"
     resolved "https://registry.npm.taobao.org/performance-now/download/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
+  
+  picomatch@^2.0.5:
+    version "2.2.1"
+    resolved "https://registry.npm.taobao.org/picomatch/download/picomatch-2.2.1.tgz#21bac888b6ed8601f831ce7816e335bc779f0a4a"
   
   pify@^2.0.0:
     version "2.3.0"
@@ -8486,9 +8534,15 @@ Lockfile:
     version "1.1.7"
     resolved "https://registry.npm.taobao.org/resolve/download/resolve-1.1.7.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fresolve%2Fdownload%2Fresolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
   
-  resolve@1.12.0, resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.0, resolve@^1.12.0, resolve@^1.3.2, resolve@^1.5.0, resolve@^1.8.1, resolve@^1.9.0:
+  resolve@1.12.0, resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.0, resolve@^1.12.0, resolve@^1.3.2, resolve@^1.5.0, resolve@^1.8.1:
     version "1.12.0"
     resolved "https://registry.npm.taobao.org/resolve/download/resolve-1.12.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fresolve%2Fdownload%2Fresolve-1.12.0.tgz#3fc644a35c84a48554609ff26ec52b66fa577df6"
+    dependencies:
+      path-parse "^1.0.6"
+  
+  resolve@^1.9.0:
+    version "1.14.2"
+    resolved "https://registry.npm.taobao.org/resolve/download/resolve-1.14.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fresolve%2Fdownload%2Fresolve-1.14.2.tgz#dbf31d0fa98b1f29aa5169783b9c290cb865fea2"
     dependencies:
       path-parse "^1.0.6"
   
@@ -9365,6 +9419,12 @@ Lockfile:
       is-number "^3.0.0"
       repeat-string "^1.6.1"
   
+  to-regex-range@^5.0.1:
+    version "5.0.1"
+    resolved "https://registry.npm.taobao.org/to-regex-range/download/to-regex-range-5.0.1.tgz#1648c44aae7c8d988a326018ed72f5b4dd0392e4"
+    dependencies:
+      is-number "^7.0.0"
+  
   to-regex@^3.0.1, to-regex@^3.0.2:
     version "3.0.2"
     resolved "https://registry.npm.taobao.org/to-regex/download/to-regex-3.0.2.tgz#13cfdd9b336552f30b51f33a8ae1b42a7a7599ce"
@@ -10120,14 +10180,16 @@ Lockfile:
       yargs-parser "^13.1.1"
 
 Trace: 
-  Error: Command "state" not found.
-      at new MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
-      at /usr/local/lib/node_modules/yarn/lib/cli.js:87307:17
-      at Generator.next (<anonymous>)
-      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:98:30)
-      at /usr/local/lib/node_modules/yarn/lib/cli.js:116:14
-      at new Promise (<anonymous>)
-      at new F (/usr/local/lib/node_modules/yarn/lib/cli.js:23451:28)
-      at /usr/local/lib/node_modules/yarn/lib/cli.js:95:12
-      at runCommand (/usr/local/lib/node_modules/yarn/lib/cli.js:87312:22)
-      at Object.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:87412:14)
+  Error: Command failed.
+  Exit code: 1
+  Command: sh
+  Arguments: -c react-app-rewired start
+  Directory: /Users/shenys/my-react/antd-demo-ts
+  Output:
+  
+      at ProcessTermError.MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
+      at new ProcessTermError (/usr/local/lib/node_modules/yarn/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:30281:17)
+      at ChildProcess.emit (events.js:189:13)
+      at maybeClose (internal/child_process.js:970:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:259:5)

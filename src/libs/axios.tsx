@@ -1,6 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import store from '../store'
+import { message } from 'antd'
 // 当前环境接口请求url
 // const ajaxUrl = process.env.NODE_ENV === 'production' ? window.CONFIG.API_URL : ''
 
@@ -11,10 +12,8 @@ const ajaxUrl = '';
  * withCredentials: 跨域请求时是否带cookie
  **/
 
-// 添加Header 参数
-// interface setHead {
-//     [key: string]: any;
-// }
+// 在head里添加token   请求前的钩子，函数
+// 在typescript 声明key为 X-TOKEN  '-' 的使用，是报错的。
 const addHeaderLog = (params:any) => {
     let head = {
         'X-TOKEN' : store.getState() ? store.getState().setToken : ''
@@ -24,6 +23,25 @@ const addHeaderLog = (params:any) => {
     Object.assign(params.headers,head)
 };
 
+// 请求返回的钩子函数 处理 401 或 404的用户未登录跳转问题
+
+const errorLogin = (params:any) => {
+    try{
+        const data = params.data
+        switch (data.error_code){
+            case 401:  
+            window.location.href = '/login';
+            break;
+            case 0 :
+            return true;
+            default:
+                throw data.error_msg || '端口错误'
+        }
+
+    } catch (err){
+        message.error(err);
+    }
+};
 class HttpRequest {
     baseURL:string;
     constructor(baseURL:string){
@@ -51,7 +69,7 @@ class HttpRequest {
         // 添加响应拦截器
         instance.interceptors.response.use(function (response:any) {
             // 对响应数据做点什么
-            //console.log(store.getState())
+            errorLogin(response);
             return response;
         }, function (error:any) {
             // 对响应错误做点什么

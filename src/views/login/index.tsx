@@ -55,7 +55,7 @@ function UserForm(Props:any):any{
 
     // 获取验证码
     function getCode() {
-        ajax.get('/verify/code')
+        ajax.get('/api/verify/code')
         .then((res)=>{   
             let data = res.data
             if(data.error_code === 0){

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/animejs": "^3.1.0",
     "@types/jest": "24.0.21",
     "@types/node": "12.12.5",
     "@types/qs": "^6.5.3",
@@ -25,6 +26,7 @@
     "eslint-plugin-react-hooks": "^1.5.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
+    "path": "^0.12.7",
     "qs": "^6.9.0",
     "react": "^16.11.0",
     "react-app-rewired": "^2.1.4",
@@ -56,8 +58,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://dev.consoleapi.starfish.gm825.net",
   "devDependencies": {
+    "http-proxy-middleware": "^0.20.0",
     "redux-devtools": "^3.5.0"
   }
 }
